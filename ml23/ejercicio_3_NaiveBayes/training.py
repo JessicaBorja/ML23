@@ -11,7 +11,7 @@ DATASET_PATH = os.path.join(THIS_PATH, 'rotten_tomatoes_dataset.py')
 '''
     Instrucciones:
     - En preprocessing.py completa el método get_one_hot_vector
-    - En naive_bayes.py completa los métodos fit y score
+    - En naive_bayes.py completa los métodos fit y predict
     - cuando finalices corre este archivo para entrenar y evaluar tu modelo.
 
     Entrega en blackboard a modo texto:
