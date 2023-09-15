@@ -57,11 +57,16 @@ if __name__ == "__main__":
     sk_model.fit(X_train, y_train)
     pred = sk_model.predict(X_val)
     sk_score = np.sum(pred == y_val) / len(y_val)
-    
+
     # Propio
     model = NaiveBayes(alpha)
     model.fit(X_train, y_train)
     accuracy = model.score(X_val, y_val)
+
+    #Prediccion
+    #ejemplos = dataset['validation'][:2]
+    #ejempplos_x, ejemplos_y = preprocess_dataset(ejemplos, vocabulary)
+    #predicciones = model.predict(ejempplos_x)
 
     # Evaluación
     print(f"sk-learn accuracy: {sk_score} \t Propio accuracy: {accuracy}")

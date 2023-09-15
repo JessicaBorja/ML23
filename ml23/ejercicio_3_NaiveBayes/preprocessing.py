@@ -12,10 +12,11 @@ def get_vocab(dataset):
         }
     '''
     vocabulary = {}
+    
     idx = 0
     for i in range(len(dataset)):
         sample = dataset[i]
-        for word in sample['text'].split():
+        for word in sample['text'].split():#separa el texto
             if word not in vocabulary:
                 vocabulary[word] = idx
                 idx += 1
@@ -37,7 +38,10 @@ def get_one_hot_vector(text, vocabulary):
     '''
     one_hot = np.zeros(len(vocabulary))
     # TODO: Genera el vector X dato el texto y vocabulario
-
+    words = text.split() #se divide el texto y se guarda como lista
+    for word in words:
+        if word in vocabulary: #si la palabra i de la lista words esta en el vocabulario...
+            one_hot[vocabulary[word]] = 1 # se asigna 1 en el indice que tiene la palabra en vocabulario.
     return one_hot
 
 def preprocess_dataset(dataset, vocabulary):
