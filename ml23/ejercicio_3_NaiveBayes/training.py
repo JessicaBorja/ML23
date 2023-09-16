@@ -3,8 +3,8 @@ import os
 import numpy as np
 from sklearn.naive_bayes import MultinomialNB
 
-from ml23.ejercicio_3_NaiveBayes.preprocessing import get_vocab, preprocess_dataset
-from ml23.ejercicio_3_NaiveBayes.naive_bayes import NaiveBayes
+from ml23.ejercicio_3_NaiveBayes.sol.preprocessing_sol import get_vocab, preprocess_dataset
+from ml23.ejercicio_3_NaiveBayes.sol.naive_bayes_sol import NaiveBayes
 THIS_PATH = os.path.dirname(os.path.abspath(__file__))
 DATASET_PATH = os.path.join(THIS_PATH, 'rotten_tomatoes_dataset.py')
 
@@ -21,14 +21,20 @@ DATASET_PATH = os.path.join(THIS_PATH, 'rotten_tomatoes_dataset.py')
      Para el conjunto de validación.
 '''
 
-def print_preds(modelo, split, n_samples = 2):
-    # Prediccion
-    ejemplos = dataset[split][:2]
+def print_preds(model, dataset, n_samples = 10):
+    indices = np.random.choice(np.arange(len(dataset)), n_samples)
+    indices = [i.item() for i in indices]
     # obtener representacion de vector de mis ejemplos
-    ejemplos_x, ejemplos_label = preprocess_dataset(dataset['validation'], vocabulary)
-    predicciones = model.predict(ejemplos_x[:n_samples])
-    for ej, pred in zip(ejemplos, predicciones):
-        print(ej['text'], pred)
+    preprocessed_dp, _ = preprocess_dataset(dataset, vocabulary)
+    datapoints = dataset[indices]
+    preds = model.predict(preprocessed_dp[indices])
+    print('PREDICCIONES DEL MODELO ENTRENADO')
+    for i in range(len(indices)):
+        dp = datapoints['text'][i]
+        gt = datapoints['label'][i]
+        pred = preds[i]
+        tag = f'GT: {gt} \t Pred: {pred} \t Review: {dp}'
+        print(tag)
 
 
 def print_samples(dataset, n_samples, random=True):
@@ -80,4 +86,4 @@ if __name__ == "__main__":
     # Evaluación
     print(f"sk-learn accuracy: {sk_score} \t Propio accuracy: {accuracy}")
 
-    print_preds(model, 'validation')
+    print_preds(model, dataset['validation'])
