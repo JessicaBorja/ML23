@@ -21,6 +21,15 @@ DATASET_PATH = os.path.join(THIS_PATH, 'rotten_tomatoes_dataset.py')
      Para el conjunto de validación.
 '''
 
+def print_preds(modelo, split, n_samples = 2):
+    # Prediccion
+    ejemplos = dataset[split][:2]
+    # obtener representacion de vector de mis ejemplos
+    ejemplos_x, ejemplos_label = preprocess_dataset(dataset['validation'], vocabulary)
+    predicciones = model.predict(ejemplos_x[:n_samples])
+    for ej, pred in zip(ejemplos, predicciones):
+        print(ej['text'], pred)
+
 
 def print_samples(dataset, n_samples, random=True):
     if random:
@@ -70,3 +79,5 @@ if __name__ == "__main__":
 
     # Evaluación
     print(f"sk-learn accuracy: {sk_score} \t Propio accuracy: {accuracy}")
+
+    print_preds(model, 'validation')
