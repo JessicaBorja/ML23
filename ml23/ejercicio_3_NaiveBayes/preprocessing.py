@@ -21,6 +21,16 @@ def get_vocab(dataset):
                 vocabulary[word] = idx
                 idx += 1
     vocabulary['UNK'] = idx
+    ...#
+    #for sample in dataset:
+     #   review = sample("text")
+      #  words = review.split("")
+       # for w in words:
+        #    if w in vocabulary:
+         #       vocabulary[w]
+          #      idx +=1 
+    #vocabulary["UNK"] = idx
+    ... 
     return vocabulary
 
 def get_one_hot_vector(text, vocabulary):
