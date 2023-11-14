@@ -37,7 +37,11 @@ def get_one_hot_vector(text, vocabulary):
     '''
     one_hot = np.zeros(len(vocabulary))
     # TODO: Genera el vector X dato el texto y vocabulario
-
+    idx = 0
+    for word in text.split(' '):
+        if word in vocabulary:
+            idx = vocabulary[word]
+            one_hot[idx] = 1
     return one_hot
 
 def preprocess_dataset(dataset, vocabulary):

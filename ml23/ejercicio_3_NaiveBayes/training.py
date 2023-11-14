@@ -2,9 +2,21 @@ from datasets import load_dataset
 import os
 import numpy as np
 from sklearn.naive_bayes import MultinomialNB
+<<<<<<< HEAD
+<<<<<<< HEAD
+    
+from ml23.ejercicio_3_NaiveBayes.preprocessing import get_vocab, preprocess_dataset
+from ml23.ejercicio_3_NaiveBayes.naive_bayes import NaiveBayes
+=======
 
 from ml23.ejercicio_3_NaiveBayes.sol.preprocessing_sol import get_vocab, preprocess_dataset
 from ml23.ejercicio_3_NaiveBayes.sol.naive_bayes_sol import NaiveBayes
+>>>>>>> upstream/master
+=======
+
+from ml23.ejercicio_3_NaiveBayes.sol.preprocessing_sol import get_vocab, preprocess_dataset
+from ml23.ejercicio_3_NaiveBayes.sol.naive_bayes_sol import NaiveBayes
+>>>>>>> upstream/master
 THIS_PATH = os.path.dirname(os.path.abspath(__file__))
 DATASET_PATH = os.path.join(THIS_PATH, 'rotten_tomatoes_dataset.py')
 
